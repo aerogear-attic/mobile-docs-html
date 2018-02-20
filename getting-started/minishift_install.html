@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aerogear Docs Latest | Getting Started | Installing</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link href="../../latest/_stylesheets/asciibinder.css" rel="stylesheet" />
+
+   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+   <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <![endif]-->
+
+  <link href="../../latest/_images/favicon32x32.png" rel="shortcut icon" type="text/css">
+  <!--[if IE]><link rel="shortcut icon" href="../../latest/_images/favicon.ico"><![endif]-->
+  <meta content="Red Hat" name="application-name">
+</head>
+<body>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="https://aerogear.org/"><img alt="Build Farm" src="../../latest/_images/aerogear_logo_200px.png"></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <p class="toggle-nav visible-xs pull-left">
+      <button class="btn btn-default btn-sm" type="button" data-toggle="offcanvas">Toggle nav</button>
+    </p>
+    <ol class="breadcrumb">
+      <li class="sitename">
+        <a href="../../index.html">Home</a>
+      </li>
+      <li class="hidden-xs active">
+        <a href="../getting-started/mobile_overview.html">Aerogear Docs Latest</a>
+      </li>
+      <li class="hidden-xs active">
+        <a href="../getting-started/mobile_overview.html">Getting Started</a>
+      </li>
+      
+      <li class="hidden-xs active">
+        Installing
+      </li>
+    </ol>
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-xs-8 col-sm-3 col-md-3 sidebar sidebar-offcanvas">
+        <ul class="nav nav-sidebar">
+    <li class="nav-header">
+      <a class="" href="#" data-toggle="collapse" data-target="#topicGroup0">
+        <span id="tgSpan0" class="fa fa-angle-down"></span>Getting Started
+      </a>
+      <ul id="topicGroup0" class="collapse in list-unstyled">
+            <li><a class="" href="../getting-started/mobile_overview.html">Oveview</a></li>
+            <li><a class="" href="../getting-started/mobile_terminology.html">Terminology</a></li>
+            <li><a class="" href="../getting-started/mobile_architecture.html">Architecture</a></li>
+            <li><a class=" active" href="../getting-started/minishift_install.html">Installing</a></li>
+            <li><a class="" href="../getting-started/debugging_guide.html">Debugging guide</a></li>
+      </ul>
+    </li>
+    <li class="nav-header">
+      <a class="" href="#" data-toggle="collapse" data-target="#topicGroup1">
+        <span id="tgSpan1" class="fa fa-angle-right"></span>Android SDK (latest)
+      </a>
+      <ul id="topicGroup1" class="collapse  list-unstyled">
+            <li class="nav-header">
+              <a class="" href="#" data-toggle="collapse" data-target="#topicSubGroup-1-0">
+                <span id="sgSpan-1-0" class="fa fa-caret-right"></span>&nbsp;Getting Started
+              </a>
+              <ul id="topicSubGroup-1-0" class="nav-tertiary list-unstyled collapse">
+
+                  <li><a class="" href="../android-master/getting-started/getting-started.html">Getting Started with AeroGear Android SDK</a></li>
+
+                  <li><a class="" href="../android-master/getting-started/core.html">Using the AeroGear Android SDK</a></li>
+
+                  <li><a class="" href="../android-master/getting-started/metrics.html">Using the Android SDK with the Metrics Service</a></li>
+
+                  <li><a class="" href="../android-master/getting-started/auth.html">Using the Android SDK with the Auth Service</a></li>
+              </ul>
+            </li>
+      </ul>
+    </li>
+</ul>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-9 main">
+        <div class="page-header">
+          <h2>Setting up AeroGear Mobile Services onMinishift</h2>
+        </div>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html">Install Minishift</a></p>
+<div class="paragraph">
+<p>Check Minishift version is at least 1.11.0:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">$ minishift version
+minishift v1.11.0+4459917</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><a href="https://docs.openshift.org/latest/cli_reference/get_started_cli.html#installing-the-cli">Install OC</a></p>
+</li>
+<li>
+<p>Enable Minishift experimental addons:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">export MINISHIFT_ENABLE_EXPERIMENTAL=y</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If this variable is not set, you might be see errors similar to <code>Error: unknown flag: --service-catalog</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Clone the <a href="https://github.com/aerogear/minishift-mobilecore-addon">minishift-mobilecore-addon</a> repo.</p>
+</li>
+<li>
+<p>Add minishift-mobilecore to the minishift add-ons catalog:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift addon install -f minishift-mobilecore-addon/
+minishift addons enable mobilecore</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On subsequent installs, make sure to update the <code>minishift-mobilecore-addon</code> repo (<code>git pull</code>) before running these commands to ensure the addon and <strong>mobile-core</strong> versions are compatibile.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set the following environment variables, replacing <code>aerogearcatalog</code> with your own Dockerhub organization if required:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">export DOCKERHUB_USERNAME=&lt;docker hub username&gt;
+export DOCKERHUB_PASSWORD=&lt;docker hub password&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you use a Docker Hub organization, set a variable for it using <code>export DOCKERHUB_ORG=&lt;your docker hub org&gt;</code>, otherwise next command below defaults the value to <code>aerogearcatalog</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Configure Minishift for AeroGear:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift config set addon-env DOCKERHUB_USERNAME=${DOCKERHUB_USERNAME},DOCKERHUB_PASSWORD=&quot;${DOCKERHUB_PASSWORD}&quot;,DOCKERHUB_ORG=${DOCKERHUB_ORG}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure Minishift resources</p>
+<div class="paragraph">
+<p>AeroGear recommends configuring Minishift to start with extra CPUs and RAM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift config set cpus 4
+minishift config set memory 4096</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Clear Minishift to enable mobile core:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift stop
+minishift delete</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new Minishift cluster with service catalog and mobile core:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you did not enable the addon, you need to apply it manually:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift addons apply mobilecore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the installation is complete you are prompted to login using either the <code>oc</code> CLI or the OpenShift web console:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OpenShift server started.
+
+The server is accessible via web console at:
+    https://192.168.42.193:8443
+
+You are logged in as:
+    User:     developer
+    Password: &lt;any value&gt;
+
+To login as administrator:
+    oc login -u system:admin
+
+-- Applying addon 'mobilecore':.....................
+Installing and starting MCP extension, this can take a while
+....
+Installing Ansible Service Broker..
+mobile core successfully enabled</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you can see the the OpenShift service catalog, but not the mobile tab, note that the installation may not have completed. Wait some time before reviewing <a href="#mobile-tab-not-appearing">Mobile tab not appearing in the service catalog</a> section.</p>
+</li>
+<li>
+<p>Try deleting the Minishift VM and restarting:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift stop
+minishift delete
+minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm the addon-env config values are correct:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift config get addon-env</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If values are incorrect, follow the instructions in <a href="#setting-up-minishift">Setting up Minishift</a>.</p>
+</div>
+</li>
+<li>
+<p>Review the following scenarios:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#service-catalog-not-recognized">Service catalog flag is not recognized</a></p>
+</li>
+<li>
+<p><a href="#mobile-tab-not-appearing">Mobile tab not appearing in the service catalog</a></p>
+</li>
+<li>
+<p><a href="#apbs-not-showing">APBs not displayed in service catalog</a></p>
+</li>
+<li>
+<p><a href="#errors-when-stopping">Errors displayed when stopping or deleting Minishift</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="service-catalog-not-recognized"><a class="anchor" href="#service-catalog-not-recognized"></a>Service catalog flag is not recognized</h3>
+<div class="paragraph">
+<p>This is an error output by Minishift when it is running without the <code>MINISHIFT_ENABLE_EXPERIMENTAL</code> environment variable set to 'y'. To correct this run the following in your current shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>export MINISHIFT_ENABLE_EXPERIMENTAL=y</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mobile-tab-not-appearing"><a class="anchor" href="#mobile-tab-not-appearing"></a>Mobile tab not appearing in the service catalog</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure the Ansible Service Broker is running:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log into your Minishift cluster as admin:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">oc login -u system:admin</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check that the asb pod is running correctly in the <code>ansible-service-broker</code> namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">oc get pods -n ansible-service-broker</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the asb pos is running correctly, you see something similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">NAME               READY     STATUS    RESTARTS   AGE
+asb-1-8n4b6        1/1       Running   0          46m
+asb-etcd-1-ptzmp   1/1       Running   0          46m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the asb pods are not running, start them using either of the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">oc rollout latest asb
+oc rollout latest asb-etcd</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Make sure the Ansible Service Broker can find the Mobile APBs by following the procedure in <a href="#apbs-not-showing">APBs not displayed in service catalog</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apbs-not-showing"><a class="anchor" href="#apbs-not-showing"></a>APBs not displayed in service catalog</h3>
+<div class="paragraph">
+<p>This issue is typically caused by incorrect values for the DOCKERHUB_USER, DOCKERHUB_PASSWORD or DOCKERHUB_ORG.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the Docker hub values:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift config get addon-env</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After correcting any values, you need to delete and restart the Minishift VM:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">minishift stop
+minishift delete
+minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="errors-when-stopping"><a class="anchor" href="#errors-when-stopping"></a>Errors displayed when stopping or deleting Minishift</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check any links to Minishift documentation displayed in the errors.</p>
+</li>
+<li>
+<p>Check the Minishift configuration, typically <code>~/.minishift</code> for any possible permission issues.</p>
+</li>
+<li>
+<p>Try running <code>minishift stop</code> and retrying <code>minishift delete</code>.</p>
+</li>
+<li>
+<p>If the issue is still occurring, delete the Minishift configuration directory and recreate it:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">sudo rm -rf ~/.minishift
+minishift addons install -f /path/to/minishift-mobilecore-addon
+minishift addons enable mobilecore</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="../../latest/_javascripts/bootstrap-offcanvas.js" type="text/javascript"></script>
+   <script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+      $("[id^='topicGroup']").on('show.bs.collapse', function (event) {
+        if (!($(event.target).attr('id').match(/^topicSubGroup/))) {
+          $(this).parent().find("[id^='tgSpan']").toggleClass("fa-angle-right fa-angle-down");
+        }
+      });
+      $("[id^='topicGroup']").on('hide.bs.collapse', function (event) {
+        if (!($(event.target).attr('id').match(/^topicSubGroup/))) {
+          $(this).parent().find("[id^='tgSpan']").toggleClass("fa-angle-right fa-angle-down");
+        }
+      });
+      $("[id^='topicSubGroup']").on('show.bs.collapse', function () {
+        $(this).parent().find("[id^='sgSpan']").toggleClass("fa-caret-right fa-caret-down");
+      });
+      $("[id^='topicSubGroup']").on('hide.bs.collapse', function () {
+        $(this).parent().find("[id^='sgSpan']").toggleClass("fa-caret-right fa-caret-down");
+      });
+    });
+    /*]]>*/
+  </script>
+</body>
+</html>

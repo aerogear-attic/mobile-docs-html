@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aerogear Docs Latest | Android SDK (latest) | Getting Started | Using the AeroGear Android SDK</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <link href="../../../latest/_stylesheets/asciibinder.css" rel="stylesheet" />
+
+   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+   <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <![endif]-->
+
+  <link href="../../../latest/_images/favicon32x32.png" rel="shortcut icon" type="text/css">
+  <!--[if IE]><link rel="shortcut icon" href="../../../latest/_images/favicon.ico"><![endif]-->
+  <meta content="Red Hat" name="application-name">
+</head>
+<body>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="https://aerogear.org/"><img alt="Build Farm" src="../../../latest/_images/aerogear_logo_200px.png"></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <p class="toggle-nav visible-xs pull-left">
+      <button class="btn btn-default btn-sm" type="button" data-toggle="offcanvas">Toggle nav</button>
+    </p>
+    <ol class="breadcrumb">
+      <li class="sitename">
+        <a href="../../../index.html">Home</a>
+      </li>
+      <li class="hidden-xs active">
+        <a href="../../getting-started/mobile_overview.html">Aerogear Docs Latest</a>
+      </li>
+      <li class="hidden-xs active">
+        Android SDK (latest)
+      </li>
+      <li class="hidden-xs active"><a href="../../android-master/getting-started/getting-started.html">Getting Started</a></li>
+      <li class="hidden-xs active">
+        Using the AeroGear Android SDK
+      </li>
+    </ol>
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-xs-8 col-sm-3 col-md-3 sidebar sidebar-offcanvas">
+        <ul class="nav nav-sidebar">
+    <li class="nav-header">
+      <a class="" href="#" data-toggle="collapse" data-target="#topicGroup0">
+        <span id="tgSpan0" class="fa fa-angle-right"></span>Getting Started
+      </a>
+      <ul id="topicGroup0" class="collapse  list-unstyled">
+            <li><a class="" href="../../getting-started/mobile_overview.html">Oveview</a></li>
+            <li><a class="" href="../../getting-started/mobile_terminology.html">Terminology</a></li>
+            <li><a class="" href="../../getting-started/mobile_architecture.html">Architecture</a></li>
+            <li><a class="" href="../../getting-started/minishift_install.html">Installing</a></li>
+            <li><a class="" href="../../getting-started/debugging_guide.html">Debugging guide</a></li>
+      </ul>
+    </li>
+    <li class="nav-header">
+      <a class="" href="#" data-toggle="collapse" data-target="#topicGroup1">
+        <span id="tgSpan1" class="fa fa-angle-down"></span>Android SDK (latest)
+      </a>
+      <ul id="topicGroup1" class="collapse in list-unstyled">
+            <li class="nav-header">
+              <a class="" href="#" data-toggle="collapse" data-target="#topicSubGroup-1-0">
+                <span id="sgSpan-1-0" class="fa fa-caret-down"></span>&nbsp;Getting Started
+              </a>
+              <ul id="topicSubGroup-1-0" class="nav-tertiary list-unstyled collapse in">
+
+                  <li><a class="" href="../../android-master/getting-started/getting-started.html">Getting Started with AeroGear Android SDK</a></li>
+
+                  <li><a class=" active" href="../../android-master/getting-started/core.html">Using the AeroGear Android SDK</a></li>
+
+                  <li><a class="" href="../../android-master/getting-started/metrics.html">Using the Android SDK with the Metrics Service</a></li>
+
+                  <li><a class="" href="../../android-master/getting-started/auth.html">Using the Android SDK with the Auth Service</a></li>
+              </ul>
+            </li>
+      </ul>
+    </li>
+</ul>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-9 main">
+        <div class="page-header">
+          <h2>AeroGear Services Core SDK</h2>
+        </div>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Core SDK provides numbers of helpers for individual SDK&#8217;s
+Core can be also used to extract common implementations from SDK&#8217;s.</p>
+</div>
+<div class="paragraph">
+<p>Main responsibilities:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configuration parser</p>
+</li>
+<li>
+<p>Network library</p>
+</li>
+<li>
+<p>Default logger shared between SDK.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-dependency"><a class="anchor" href="#adding-dependency"></a>Adding dependency</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add dependency to your application module</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>dependencies {
+    implementation group: 'org.aerogear.android', name: 'core'
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#0a8;font-weight:bold">Context</span> context = <span style="color:#950">this</span>;
+mobileCore = MobileCore.init(context);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For full usage see <a href="../../example">example</a> application</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="core-api"><a class="anchor" href="#core-api"></a>Core api</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Core SDK supports currently following helpers</p>
+</div>
+<div class="sect2">
+<h3 id="logger"><a class="anchor" href="#logger"></a>Logger</h3>
+<div class="paragraph">
+<p>Logger is initialized automatically and available as static member of AgsCore.
+Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> AgsCore.logger.debug(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Message</span><span style="color:#710">&quot;</span></span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>End users can change or disable logger in top level application by providing empty implementation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">activity.mobileCore.getLogger().info(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Users: </span><span style="color:#710">&quot;</span></span> + retrievesUsers.size());</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="network-library"><a class="anchor" href="#network-library"></a>Network library</h3>
+<div class="paragraph">
+<p>Network library offers common wrapper for making any networking requests.
+Wrapper by default works with popular OkHttp library.</p>
+</div>
+<div class="sect3">
+<h4 id="usage-2"><a class="anchor" href="#usage-2"></a>Usage</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">   HttpRequest httpRequest = activity.mobileCore.getHttpLayer().newRequest();
+        httpRequest.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">https://jsonplaceholder.typicode.com/users</span><span style="color:#710">&quot;</span></span>);
+        HttpResponse httpResponse = httpRequest.execute();
+        httpResponse.onComplete(() -&gt; {
+            <span style="color:#0a8;font-weight:bold">String</span> jsonResponse = httpResponse.stringBody();
+            <span style="color:#080;font-weight:bold">new</span> AppExecutors().mainThread().execute(() -&gt; {
+
+                <span style="color:#0a8;font-weight:bold">List</span>&lt;User&gt; retrievesUsers = <span style="color:#080;font-weight:bold">new</span> Gson()
+                    .fromJson(jsonResponse, <span style="color:#080;font-weight:bold">new</span> TypeToken&lt;<span style="color:#0a8;font-weight:bold">List</span>&lt;User&gt;&gt;() {
+                    }.getType());
+
+                activity.mobileCore.getLogger().info(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Users: </span><span style="color:#710">&quot;</span></span> + retrievesUsers.size());
+
+                users.addAll(retrievesUsers);
+            });
+        });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="../getting-started.adoc">SDK architecture</a> for more details about SDK architecture
+See <a href="./example">example</a> project for examples how core can be used.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="../../../latest/_javascripts/bootstrap-offcanvas.js" type="text/javascript"></script>
+   <script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+      $("[id^='topicGroup']").on('show.bs.collapse', function (event) {
+        if (!($(event.target).attr('id').match(/^topicSubGroup/))) {
+          $(this).parent().find("[id^='tgSpan']").toggleClass("fa-angle-right fa-angle-down");
+        }
+      });
+      $("[id^='topicGroup']").on('hide.bs.collapse', function (event) {
+        if (!($(event.target).attr('id').match(/^topicSubGroup/))) {
+          $(this).parent().find("[id^='tgSpan']").toggleClass("fa-angle-right fa-angle-down");
+        }
+      });
+      $("[id^='topicSubGroup']").on('show.bs.collapse', function () {
+        $(this).parent().find("[id^='sgSpan']").toggleClass("fa-caret-right fa-caret-down");
+      });
+      $("[id^='topicSubGroup']").on('hide.bs.collapse', function () {
+        $(this).parent().find("[id^='sgSpan']").toggleClass("fa-caret-right fa-caret-down");
+      });
+    });
+    /*]]>*/
+  </script>
+</body>
+</html>
